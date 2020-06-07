@@ -12,17 +12,11 @@ class LRUCache(capacity: Int) {
         fun main(args: Array<String>) {
             var cache = LRUCache(2)
             cache.put(2, 1)
-            cache.printInfo()
             cache.put(2, 2)
-            cache.printInfo()
             println(cache.get(2))
-            cache.printInfo()
             cache.put(1, 1)
-            cache.printInfo()
             cache.put(4, 1)
-            cache.printInfo()
             println(cache.get(2))
-            cache.printInfo()
         }
     }
 
@@ -59,6 +53,7 @@ class LRUCache(capacity: Int) {
                 node.preNode = mTailNode.preNode
                 mTailNode.preNode?.nextNode = node
                 node.nextNode = mTailNode
+                mTailNode.preNode = node
             }
             return node.value
         }
@@ -77,6 +72,7 @@ class LRUCache(capacity: Int) {
             node.preNode = mTailNode.preNode
             mTailNode.preNode?.nextNode = node
             node.nextNode = mTailNode
+            mTailNode.preNode = node
         } else {
             if (mMap.size >= mCapacity) {
                 //如果超出容量，则删除第一个元素
